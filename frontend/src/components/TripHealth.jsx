@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ShieldCheck, AlertTriangle, AlertOctagon, CheckCircle2, Wand2, RefreshCw } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function TripHealth({ risks, onFixRisk }) {
+  const { t } = useLanguage();
   const [fixedRisks, setFixedRisks] = useState({});
 
   const handleFix = (riskId, actionType) => {
@@ -22,11 +24,11 @@ export default function TripHealth({ risks, onFixRisk }) {
             <ShieldCheck size={18} />
           </div>
           <div>
-            <h3 style={{ fontSize: '1.15rem' }}>Trip Health & Risk Detector</h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Proactive conflict detection</p>
+            <h3 style={{ fontSize: '1.15rem' }}>{t('panel_health_title', 'Trip Health & Risk Detector')}</h3>
+            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{t('panel_health_sub', 'Proactive conflict detection')}</p>
           </div>
         </div>
-        <span className="badge badge-green">AI Active</span>
+        <span className="badge badge-green">{t('panel_health_active', 'AI Active')}</span>
       </div>
 
       {/* Risk Items */}
@@ -70,7 +72,7 @@ export default function TripHealth({ risks, onFixRisk }) {
                       fontWeight: 700,
                       color: severity === 'green' ? '#059669' : severity === 'yellow' ? '#b45309' : '#dc2626'
                     }}>
-                      — {isFixed ? 'Resolved & Optimized' : risk.status}
+                      — {isFixed ? t('panel_health_resolved', 'Resolved & Optimized') : risk.status}
                     </span>
                   </div>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
@@ -98,7 +100,7 @@ export default function TripHealth({ risks, onFixRisk }) {
                   }}
                 >
                   <Wand2 size={12} color="var(--electric-blue)" />
-                  Fix automatically
+                  {t('panel_health_fix_btn', 'Fix automatically')}
                 </button>
               )}
             </div>

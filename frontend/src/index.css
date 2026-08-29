@@ -1,19 +1,28 @@
 :root {
+  /* Warm off-white / luxury cream palette */
+  --bg-warm: #FAF9F6;
+  --bg-light: #F8F9FA;
+  --card-bg: #FFFFFF;
+  --card-glass: rgba(255, 255, 255, 0.88);
+  
+  /* Deep Navy & Typography */
   --primary-navy: #071A3D;
-  --primary-navy-dark: #040e22;
+  --primary-navy-dark: #030D20;
   --primary-navy-light: #0d2757;
+  --text-main: #0B192C;
+  --text-muted: #576574;
+  --text-light: #8395A7;
+  --border-color: rgba(7, 26, 61, 0.09);
+  --border-subtle: rgba(7, 26, 61, 0.05);
+
+  /* Accents */
   --electric-blue: #1677FF;
   --electric-blue-hover: #0958d9;
   --electric-blue-light: #e6f4ff;
   --sky-blue: #38BDF8;
   --sky-blue-light: #f0f9ff;
-  --bg-light: #F5F8FC;
-  --card-bg: #FFFFFF;
-  --text-main: #0F172A;
-  --text-muted: #64748B;
-  --text-light: #94A3B8;
-  --border-color: #E2E8F0;
-  --border-subtle: #EDF2F7;
+  --amber: #F59E0B;
+  --amber-light: #FFFBEB;
   
   --success: #10B981;
   --success-bg: #ECFDF5;
@@ -26,17 +35,18 @@
   
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
   
-  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-sm: 0 2px 8px 0 rgba(7, 26, 61, 0.06);
-  --shadow-md: 0 8px 24px -4px rgba(7, 26, 61, 0.08), 0 2px 6px -1px rgba(7, 26, 61, 0.04);
-  --shadow-lg: 0 16px 32px -8px rgba(7, 26, 61, 0.12), 0 4px 12px -2px rgba(7, 26, 61, 0.06);
-  --shadow-xl: 0 24px 48px -12px rgba(7, 26, 61, 0.18);
-  --shadow-glow: 0 0 24px rgba(22, 119, 255, 0.25);
+  --shadow-xs: 0 1px 2px 0 rgba(7, 26, 61, 0.04);
+  --shadow-sm: 0 2px 8px 0 rgba(7, 26, 61, 0.05);
+  --shadow-md: 0 8px 24px -4px rgba(7, 26, 61, 0.07), 0 2px 6px -1px rgba(7, 26, 61, 0.03);
+  --shadow-lg: 0 16px 36px -8px rgba(7, 26, 61, 0.09), 0 4px 12px -2px rgba(7, 26, 61, 0.04);
+  --shadow-xl: 0 28px 56px -12px rgba(7, 26, 61, 0.14);
+  --shadow-glow: 0 0 24px rgba(22, 119, 255, 0.2);
   
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
   --radius-xl: 28px;
   --radius-full: 9999px;
   
@@ -53,9 +63,9 @@
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-light);
+  background-color: var(--bg-warm);
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -329,4 +339,63 @@ a {
   box-shadow: var(--shadow-xl);
   border: 1px solid rgba(255, 255, 255, 0.8);
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Travel Photography & Cinematic Overlays */
+.travel-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.travel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.travel-img-wrapper:hover .travel-img {
+  transform: scale(1.04);
+}
+
+.cinematic-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 26, 61, 0.1) 0%, rgba(7, 26, 61, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* Photo Masonry Timeline */
+.photo-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.photo-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: #000000;
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.photo-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem;
+  background: linear-gradient(0deg, rgba(7, 26, 61, 0.95) 0%, rgba(7, 26, 61, 0.4) 70%, transparent 100%);
+  color: #ffffff;
+  transition: all var(--transition-fast);
 }

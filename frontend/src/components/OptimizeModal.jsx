@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Sparkles, X, TrendingDown, Clock, Users, Flame, Coffee, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimization }) {
+  const { t } = useLanguage();
   if (!isOpen) return null;
 
   const [selectedOption, setSelectedOption] = useState('budget_decrease');
@@ -14,44 +16,43 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
       icon: TrendingDown,
       color: 'var(--success)',
       bg: 'var(--success-bg)',
-      label: 'Budget decreased',
-      desc: 'Smart substitutions for transit and stays to save cost without losing fun.'
+      label: t('opt_opt_budget_dec', 'Budget decreased'),
+      desc: t('opt_opt_budget_dec_desc', 'Smart substitutions for transit and stays to save cost without losing fun.')
     },
     {
       id: 'running_late',
       icon: Clock,
       color: 'var(--warning)',
       bg: 'var(--warning-bg)',
-      label: "We're running late",
-      desc: 'Compress timeline, remove redundant transit buffer, and re-order spots.'
+      label: t('opt_opt_running_late', "We're running late"),
+      desc: t('opt_opt_running_late_desc', 'Compress timeline, remove redundant transit buffer, and re-order spots.')
     },
     {
       id: 'member_drop',
       icon: Users,
       color: 'var(--electric-blue)',
       bg: 'var(--electric-blue-light)',
-      label: 'Someone dropped out',
-      desc: 'Recalculate room configuration, vehicle split, and fair share balances.'
+      label: t('opt_opt_member_drop', 'Someone dropped out'),
+      desc: t('opt_opt_member_drop_desc', 'Recalculate room configuration, vehicle split, and fair share balances.')
     },
     {
       id: 'more_activities',
       icon: Flame,
       color: '#ea580c',
       bg: '#ffedd5',
-      label: 'We want more activities',
-      desc: 'Fill idle gaps with high-adrenaline group experiences.'
+      label: t('opt_opt_more_acts', 'We want more activities'),
+      desc: t('opt_opt_more_acts_desc', 'Fill idle gaps with high-adrenaline group experiences.')
     },
     {
       id: 'relaxed_trip',
       icon: Coffee,
       color: 'var(--purple)',
       bg: 'var(--purple-bg)',
-      label: 'We want a relaxed trip',
-      desc: 'Slow down the pace, extend cafe breaks, and eliminate early morning calls.'
+      label: t('opt_opt_relaxed', 'We want a relaxed trip'),
+      desc: t('opt_opt_relaxed_desc', 'Slow down the pace, extend cafe breaks, and eliminate early morning calls.')
     }
   ];
 
-  // Dynamic preview metrics based on selected scenario
   const getOptimizationPreview = () => {
     switch (selectedOption) {
       case 'budget_decrease':
@@ -146,8 +147,8 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
               <Sparkles size={22} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.35rem' }}>✨ Optimize My Trip</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Killer Feature — Adaptive Real-Time Re-planning</p>
+              <h2 style={{ fontSize: '1.35rem' }}>{t('opt_title', '✨ Optimize My Trip')}</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{t('opt_subtitle', 'Killer Feature — Adaptive Real-Time Re-planning')}</p>
             </div>
           </div>
           <button type="button" onClick={onClose} className="btn btn-ghost btn-icon">
@@ -156,7 +157,7 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
         </div>
 
         {/* Question */}
-        <h3 style={{ fontSize: '1.1rem', marginBottom: '0.85rem' }}>What's changed?</h3>
+        <h3 style={{ fontSize: '1.1rem', marginBottom: '0.85rem' }}>{t('opt_question', "What's changed?")}</h3>
 
         {/* Options Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '0.75rem', marginBottom: '1.5rem' }}>
@@ -232,7 +233,7 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
                   onClick={() => setNewPeople(p)}
                   className={`btn btn-sm ${newPeople === p ? 'btn-primary' : 'btn-secondary'}`}
                 >
-                  {p} Travelers
+                  {p} {t('dash_travelers_count', 'Travelers')}
                 </button>
               ))}
             </div>
@@ -250,7 +251,7 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--electric-blue)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Optimization Preview
+                {t('opt_preview_title', 'Optimization Preview')}
               </span>
               <span className="badge badge-green">
                 {preview.summary}
@@ -295,7 +296,7 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
         {/* Footer Actions */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.75rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem' }}>
           <button type="button" onClick={onClose} className="btn btn-secondary">
-            Cancel
+            {t('opt_btn_cancel', 'Cancel')}
           </button>
           <button
             type="button"
@@ -304,7 +305,7 @@ export default function OptimizeModal({ isOpen, onClose, trip, onApplyOptimizati
             style={{ padding: '0.75rem 1.6rem', boxShadow: '0 4px 16px rgba(22, 119, 255, 0.4)' }}
           >
             <Sparkles size={16} />
-            Apply Optimization
+            {t('opt_btn_apply', 'Apply Optimization')}
           </button>
         </div>
       </div>

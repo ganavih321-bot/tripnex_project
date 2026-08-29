@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, CheckCircle2, Loader2, Compass } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function GeneratingScreen({ destination, onComplete }) {
+  const { t } = useLanguage();
+
   const steps = [
-    "Understanding your group & travel style",
-    "Optimizing budget allocation & buffers",
-    "Planning transit routes & local hops",
-    "Finding top-rated verified activities & stays",
-    "Building your day-wise group itinerary"
+    t('gen_step_1', "Understanding your group & travel style"),
+    t('gen_step_2', "Optimizing budget allocation & buffers"),
+    t('gen_step_3', "Planning transit routes & local hops"),
+    t('gen_step_4', "Finding top-rated verified activities & stays"),
+    t('gen_step_5', "Building your day-wise group itinerary")
   ];
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Step interval timing (approx 350ms per step = ~1.8s total)
     const interval = setInterval(() => {
       setCurrentStepIndex((prev) => {
         if (prev < steps.length - 1) {
@@ -71,12 +73,12 @@ export default function GeneratingScreen({ destination, onComplete }) {
 
         {/* Heading */}
         <h2 style={{ fontSize: '1.75rem', marginBottom: '0.4rem' }}>
-          {isReady ? "Your trip is ready ✨" : "Planning your journey..."}
+          {isReady ? t('gen_title_ready', "Your trip is ready ✨") : t('gen_title_working', "Planning your journey...")}
         </h2>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '2rem' }}>
           {isReady 
-            ? `Finalizing details for ${destination || 'your destination'}` 
-            : `TRIPNEX engine is crafting the optimal student itinerary`}
+            ? `${destination || 'your destination'}` 
+            : t('gen_sub_working', "TRIPNEX engine is crafting the optimal student itinerary")}
         </p>
 
         {/* Steps Checklist */}

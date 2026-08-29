@@ -1,7 +1,11 @@
 import React from 'react';
 import { Sparkles, Compass, History, HelpCircle, PlusCircle, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, onOpenSavedTrips, isBackendOnline, savedTripsCount }) {
+  const { t } = useLanguage();
+
   return (
     <header style={{
       position: 'sticky',
@@ -43,7 +47,7 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
                 TRIPNEX
               </span>
               <span className="badge badge-blue" style={{ fontSize: '0.65rem', padding: '0.15rem 0.45rem' }}>
-                AI Copilot
+                {t('tagline_copilot', 'AI Copilot')}
               </span>
             </div>
           </div>
@@ -60,7 +64,7 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
               fontWeight: currentView === 'home' ? 700 : 500
             }}
           >
-            Explore
+            {t('nav_explore', 'Explore')}
           </button>
           
           <button 
@@ -70,7 +74,7 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
             style={{ color: 'var(--text-muted)', fontWeight: 500 }}
           >
             <HelpCircle size={16} />
-            How it works
+            {t('nav_how_it_works', 'How it works')}
           </button>
 
           <button 
@@ -80,7 +84,7 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
             style={{ color: 'var(--text-muted)', fontWeight: 500, position: 'relative' }}
           >
             <History size={16} />
-            My Trips
+            {t('nav_my_trips', 'My Trips')}
             {savedTripsCount > 0 && (
               <span style={{
                 background: 'var(--electric-blue)',
@@ -97,8 +101,11 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
           </button>
         </nav>
 
-        {/* Right Actions & Live Status */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+        {/* Right Actions & Live Status & Language */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Language Selector Dropdown */}
+          <LanguageSelector />
+
           {/* Backend Status Pill */}
           <div 
             title={isBackendOnline ? "FastAPI Backend connected at 127.0.0.1:8000" : "Running in Standalone Client Mode"}
@@ -118,12 +125,12 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
             {isBackendOnline ? (
               <>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
-                FastAPI Live
+                {t('status_fastapi_live', 'FastAPI Live')}
               </>
             ) : (
               <>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }}></span>
-                Demo Mode
+                {t('status_demo_mode', 'Demo Mode')}
               </>
             )}
           </div>
@@ -135,7 +142,7 @@ export default function Navbar({ currentView, setCurrentView, onOpenHowItWorks, 
             style={{ padding: '0.65rem 1.25rem' }}
           >
             <Sparkles size={16} />
-            Plan My Trip
+            {t('nav_plan_btn', 'Plan My Trip')}
           </button>
         </div>
       </div>

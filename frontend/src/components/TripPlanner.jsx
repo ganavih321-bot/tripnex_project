@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Sparkles, MapPin, Calendar, Users, Wallet, Compass, Heart, AlertCircle, ArrowLeft, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function TripPlanner({ onGenerate, onBack }) {
+  const { t } = useLanguage();
   const [destination, setDestination] = useState('Pondicherry');
   const [startingLocation, setStartingLocation] = useState('Chennai');
   const [startDate, setStartDate] = useState('2026-09-12');
@@ -13,19 +15,19 @@ export default function TripPlanner({ onGenerate, onBack }) {
   const [errors, setErrors] = useState({});
 
   const availableInterests = [
-    { id: 'Beaches', emoji: '🏖️' },
-    { id: 'Food', emoji: '🍛' },
-    { id: 'Adventure', emoji: '🧗' },
-    { id: 'Culture', emoji: '🏛️' },
-    { id: 'Shopping', emoji: '🛍️' },
-    { id: 'Nightlife', emoji: '🎉' },
-    { id: 'Photography', emoji: '📸' },
+    { id: 'Beaches', label: t('interest_beaches', 'Beaches'), emoji: '🏖️' },
+    { id: 'Food', label: t('interest_food', 'Food'), emoji: '🍛' },
+    { id: 'Adventure', label: t('interest_adventure', 'Adventure'), emoji: '🧗' },
+    { id: 'Culture', label: t('interest_culture', 'Culture'), emoji: '🏛️' },
+    { id: 'Shopping', label: t('interest_shopping', 'Shopping'), emoji: '🛍️' },
+    { id: 'Nightlife', label: t('interest_nightlife', 'Nightlife'), emoji: '🎉' },
+    { id: 'Photography', label: t('interest_photography', 'Photography'), emoji: '📸' },
   ];
 
   const travelStyles = [
-    { id: 'Budget', label: 'Budget', desc: 'Hostels, public transit & street food', icon: '🎒' },
-    { id: 'Balanced', label: 'Balanced', desc: 'Private homestays, mixed transit & cafes', icon: '⚖️' },
-    { id: 'Comfort', label: 'Comfort', desc: 'Resorts/villas, cabs & premium dining', icon: '✨' },
+    { id: 'Budget', label: t('style_budget_title', 'Budget'), desc: t('style_budget_desc', 'Hostels, public transit & street food'), icon: '🎒' },
+    { id: 'Balanced', label: t('style_balanced_title', 'Balanced'), desc: t('style_balanced_desc', 'Private homestays, mixed transit & cafes'), icon: '⚖️' },
+    { id: 'Comfort', label: t('style_comfort_title', 'Comfort'), desc: t('style_comfort_desc', 'Resorts/villas, cabs & premium dining'), icon: '✨' },
   ];
 
   const quickPicks = [
@@ -51,7 +53,6 @@ export default function TripPlanner({ onGenerate, onBack }) {
     setPeople(pick.ppl);
     setBudget(pick.bud);
     setStartDate('2026-09-12');
-    // Calculate end date based on days
     const start = new Date('2026-09-12');
     start.setDate(start.getDate() + pick.days - 1);
     setEndDate(start.toISOString().split('T')[0]);
@@ -113,7 +114,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
           style={{ marginBottom: '1.5rem', color: 'var(--text-muted)' }}
         >
           <ArrowLeft size={16} />
-          Back to Explore
+          {t('btn_back_explore', 'Back to Explore')}
         </button>
 
         {/* Form Container Card */}
@@ -124,18 +125,22 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div style={{ background: 'var(--electric-blue-light)', color: 'var(--electric-blue)', padding: '0.4rem', borderRadius: '8px' }}>
                 <Sparkles size={20} />
               </div>
-              <span className="badge badge-blue">Interactive Trip Planner</span>
+              <span className="badge badge-blue">
+                {t('planner_badge', 'Interactive Trip Planner')}
+              </span>
             </div>
-            <h1 style={{ fontSize: '2.1rem', marginBottom: '0.4rem' }}>Where are you going?</h1>
+            <h1 style={{ fontSize: '2.1rem', marginBottom: '0.4rem' }}>
+              {t('planner_title', 'Where are you going?')}
+            </h1>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-              Enter your group requirements and let TRIPNEX auto-arrange transit, stays, day-wise timeline, and per-person cost splits.
+              {t('planner_desc', 'Enter your group requirements and let TRIPNEX auto-arrange transit, stays, day-wise timeline, and per-person cost splits.')}
             </p>
           </div>
 
           {/* Quick Preset Buttons */}
           <div style={{ marginBottom: '2rem' }}>
             <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)', display: 'block', marginBottom: '0.6rem' }}>
-              Quick 1-Click Itinerary Templates:
+              {t('planner_quick_templates', 'Quick 1-Click Itinerary Templates:')}
             </span>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               {quickPicks.map((pick, idx) => (
@@ -160,7 +165,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.4rem' }}>
                   <MapPin size={16} color="var(--electric-blue)" />
-                  Destination
+                  {t('field_destination', 'Destination')}
                 </label>
                 <input
                   type="text"
@@ -187,7 +192,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.4rem' }}>
                   <Compass size={16} color="var(--sky-blue)" />
-                  Starting Location
+                  {t('field_starting_location', 'Starting Location')}
                 </label>
                 <input
                   type="text"
@@ -217,7 +222,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.4rem' }}>
                   <Calendar size={16} color="var(--primary-navy)" />
-                  Start Date
+                  {t('field_start_date', 'Start Date')}
                 </label>
                 <input
                   type="date"
@@ -243,7 +248,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.4rem' }}>
                   <Calendar size={16} color="var(--primary-navy)" />
-                  End Date
+                  {t('field_end_date', 'End Date')}
                 </label>
                 <input
                   type="date"
@@ -272,7 +277,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.4rem' }}>
                   <Users size={16} color="var(--electric-blue)" />
-                  Number of Travelers
+                  {t('field_travelers', 'Number of Travelers')}
                 </label>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <input
@@ -315,7 +320,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               <div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.4rem' }}>
                   <Wallet size={16} color="var(--success)" />
-                  Total Trip Budget (₹)
+                  {t('field_budget', 'Total Trip Budget (₹)')}
                 </label>
                 <input
                   type="number"
@@ -336,9 +341,9 @@ export default function TripPlanner({ onGenerate, onBack }) {
                   }}
                 />
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
-                  <span>Est. Split:</span>
+                  <span>{t('field_est_split', 'Est. Split:')}</span>
                   <span style={{ fontWeight: 700, color: 'var(--electric-blue)' }}>
-                    ₹{perHeadEstimate.toLocaleString('en-IN')}/person
+                    ₹{perHeadEstimate.toLocaleString('en-IN')}/{t('dash_per_person', 'person')}
                   </span>
                 </div>
                 {errors.budget && (
@@ -352,7 +357,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
             {/* Travel Style */}
             <div style={{ marginBottom: '2rem' }}>
               <label style={{ fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.6rem', display: 'block' }}>
-                Travel Style Preference:
+                {t('field_travel_style', 'Travel Style Preference:')}
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.85rem' }}>
                 {travelStyles.map((style) => (
@@ -381,7 +386,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
             {/* Group Interests */}
             <div style={{ marginBottom: '2.5rem' }}>
               <label style={{ fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.6rem', display: 'block' }}>
-                Group Interests (Select all that apply):
+                {t('field_interests', 'Group Interests (Select all that apply):')}
               </label>
               <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
                 {availableInterests.map((interest) => {
@@ -407,7 +412,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
                       }}
                     >
                       <span>{interest.emoji}</span>
-                      <span>{interest.id}</span>
+                      <span>{interest.label}</span>
                     </button>
                   );
                 })}
@@ -421,7 +426,7 @@ export default function TripPlanner({ onGenerate, onBack }) {
               style={{ width: '100%', fontSize: '1.15rem', padding: '1.1rem', boxShadow: '0 8px 24px rgba(22, 119, 255, 0.4)' }}
             >
               <Sparkles size={22} />
-              ✨ Generate My Trip
+              {t('btn_generate_trip', '✨ Generate My Trip')}
             </button>
           </form>
         </div>

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Calendar, Sun, MapPin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function DayTabs({ days, activeDay, onSelectDay }) {
+  const { t } = useLanguage();
+
   if (!days || days.length === 0) return null;
 
   return (
@@ -40,7 +43,7 @@ export default function DayTabs({ days, activeDay, onSelectDay }) {
               }}
             >
               <Calendar size={16} color={isActive ? 'var(--sky-blue)' : 'var(--text-light)'} />
-              <span>DAY {d.day}</span>
+              <span>{t('dash_day', 'DAY')} {d.day}</span>
               {d.timeline && (
                 <span style={{
                   fontSize: '0.75rem',
@@ -49,7 +52,7 @@ export default function DayTabs({ days, activeDay, onSelectDay }) {
                   background: isActive ? 'rgba(255, 255, 255, 0.2)' : 'var(--bg-light)',
                   color: isActive ? '#ffffff' : 'var(--text-muted)'
                 }}>
-                  {d.timeline.length} stops
+                  {d.timeline.length} {t('dash_stops', 'stops')}
                 </span>
               )}
             </button>
@@ -73,7 +76,7 @@ export default function DayTabs({ days, activeDay, onSelectDay }) {
         }}>
           <div>
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--electric-blue)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              DAY {activeDay} FOCUS
+              {t('dash_day', 'DAY')} {activeDay} {t('dash_focus', 'FOCUS')}
             </span>
             <h3 style={{ fontSize: '1.15rem', marginTop: '0.1rem' }}>
               {days.find(d => d.day === activeDay)?.title}

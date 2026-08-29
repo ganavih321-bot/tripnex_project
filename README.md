@@ -1,169 +1,90 @@
-# TRIPNEX 🚀
-> **AI-Powered Group Travel Copilot for Student Getaways**
+# 🚀 TRIPNEX — AI-Powered Group Travel Command Center
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev)
-[![Vite](https://img.shields.io/badge/Vite-8.2-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev)
-[![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=flat&logo=sqlite&logoColor=white)](https://www.sqlite.org)
+> **PLAN → TRAVEL → SPEND → ADAPT**
+>
+> Built for the Group Travel Hackathon. Upgraded into an intelligent, highly visual AI travel command center inspired by **Airbnb + Notion + Google Maps + Modern AI Dashboard**.
 
 ---
 
-## 🧭 Overview
+## 🌟 Key Upgrades & Highlights
 
-**TRIPNEX** solves the hackathon challenge:
-> *"Group Trip Itinerary Planner — Build a tool where a group adds destinations, dates, and budget, and the app auto-arranges a day-wise itinerary with per-person cost split."*
+### 1. 🎨 Premium Visual Design System
+- **Palette**: Warm cream / luxury off-white (`#FAF9F6`) with deep luxury navy text (`#071A3D`, `#0B192C`).
+- **Glassmorphic Cards**: Soft frosted cards (`rgba(255, 255, 255, 0.88)` + backdrop blur + subtle borders).
+- **Large Rounded Cards**: Modern `20px` to `28px` corner radiuses with refined elevation shadows.
+- **Typography & Micro-interactions**: Smooth card hover lifts, subtle photo zoom, animated progress bars, and zero clutter.
 
-### Expanded Product Vision: **PLAN → TRAVEL → SPEND → ADAPT**
+### 2. 📸 Curated Destination Photography
+- High-resolution, destination-specific photography library for **Pondicherry**, **Goa**, **Manali**, **Wayanad**, **Bali**, **Jaipur**, and custom getaways.
+- Large cinematic photography covers on destination cards and headers with `object-fit: cover` and legible gradient overlays.
 
-- **PLAN**: Multi-leg transit, verified student homestays/hostels, and curated day-wise activities.
-- **TRAVEL**: Synchronized group timeline, real-time waypoints, and weather forecast indicators.
-- **SPEND**: Live budget utilization gauge, category breakdowns, and zero-math member debt settlement.
-- **ADAPT**: **Killer Feature** — Real-time AI re-planning when budgets change, people drop out, or delays occur midway.
+### 3. 📊 Dynamic Budget Heatmap
+- Live status indicator:
+  - 🟢 **SAFE** (≤ 80% utilized)
+  - 🟡 **GETTING EXPENSIVE** (81% – 95% utilized)
+  - 🔴 **OVER BUDGET** (> 95% utilized)
+- Animated spending progress gauge (`₹15,700 / ₹20,000 — 78% UTILIZED`).
+- Visual category breakdown bars for **Accommodation**, **Transport**, **Food & Dining**, **Activities & Fun**, and **Safety Buffer**.
+
+### 4. 🧠 TRIPNEX Intelligence AI Panel
+- **💡 Budget Insight**: Stay vs transit cost analysis & actionable group savings.
+- **🌦️ Weather & Climate Insight**: Destination temperatures, optimal outdoor windows, and weather-aware scheduling.
+- **🚗 Route Efficiency Insight**: Walking clusters and transit grouping to eliminate unnecessary travel overhead.
+- **⏱️ Schedule Pacing**: Balanced pacing with rest buffer windows.
+
+### 5. 🛡️ Emergency & Safety Mode
+- Dedicated **Safety Mode** interface accessible from top header and navigation:
+  - 🚨 **"I'M IN TROUBLE" SOS Button** with 2-step confirmation modal to prevent accidental triggers.
+  - National Emergency Hotlines (Police 112/100, Ambulance 108, Tourist Helpline 1363, Women Safety 1091).
+  - Nearest Verified 24/7 Hospital (with distance, address, phone hotline, and Google Maps GPS navigation).
+  - Local Police Station contacts & direct routing.
+  - One-click **Share Live GPS Location** and **Share Trip with Parents / Emergency Contacts**.
+
+### 6. 📸 Trip Memory & Travel Journal
+- Cinematic Trip Memory header:
+  - *"PONDICHERRY '26 • 3 DAYS • 5 FRIENDS • 12 PLACES VISITED • ₹15,700 SPENT — 'Some journeys deserve to be remembered.'"*
+- **Photo Timeline by Day** (Day 1, Day 2, Day 3) in a clean masonry/grid layout.
+- **Upload Memory Photo**: Add photos, custom captions, photographer credits, and day associations.
+- **Fullscreen Lightbox Viewer**: Next/Prev gallery browsing with full captions.
+- Persisted locally in `localStorage`.
+
+### 7. 👥 Interactive Group Members & Roster
+- Clickable member count (`5 travelers`) displaying all friends present (*You, Rahul, Ananya, Priya, Arjun*), roles, and attendance status (*● Present in Trip*).
+- Inline name editing, friend additions, and dynamic equal-split recalculation.
+
+### 8. 🌐 Full Multi-Language Localization
+- Dynamic language switcher supporting **English, Hindi (हिंदी), Tamil (தமிழ்), Kannada (ಕನ್ನಡ), Telugu (తెలుగు), and French (Français)**.
 
 ---
 
-## 🌟 Key Features
+## ⚡ Architecture & Tech Stack
 
-1. **🎨 Premium Modern UI/UX**:
-   - Deep Navy (`#071A3D`), Electric Blue (`#1677FF`), Sky Blue (`#38BDF8`), and Light Slate (`#F5F8FC`) design system.
-   - Glassmorphism, smooth animations, and responsive layouts across desktop and mobile.
-
-2. **🪄 Staged Generation Animation**:
-   - Sequential 1.8s checklist (Understanding group → Optimizing budget → Planning transportation → Finding activities → Itinerary ready).
-
-3. **📅 Day-by-Day Vertical Itinerary**:
-   - Time slots (e.g. 7:00 AM, 7:20 AM, 10:45 AM, 11:15 AM, 1:00 PM, 2:30 PM, etc.).
-   - Multi-leg transit modes (walk, bus, auto rickshaw, rented scooters).
-   - Per-person and total cost breakdown with student tips.
-
-4. **💰 Live Budget & Group Expense Engine**:
-   - Tracks total vs spent vs remaining budget.
-   - 5-member student balance cards (*You*, *Rahul*, *Ananya*, *Priya*, *Arjun*).
-   - 1-Click settlement suggestions (*"Rahul should receive ₹380 from Ananya"*).
-
-5. **✨ Killer Feature — "Optimize My Trip"**:
-   - Situational adaptations (*Budget decreased*, *We're running late*, *Someone dropped out*, *More activities*, *Relaxed pace*).
-   - Real-time Before vs After comparison and instant dashboard delta recalculation.
-
-6. **🤖 Floating AI Trip Copilot**:
-   - Instant group travel advice, quick prompts, and contextual re-balancing.
-
-7. **🛡️ Trip Health & Risk Detector**:
-   - Proactive conflict monitoring with 1-click automatic resolution.
-
----
-
-## 🛠️ Architecture
-
-```mermaid
-graph TD
-    A[Landing Page] -->|'Plan My Trip'| B[Trip Planner Screen]
-    A -->|'My Trips'| G[Saved Trips Drawer]
-    B -->|Submit & Validate| C[Staged AI Generation Animation]
-    C -->|API: POST /trips + POST /generate| D[Hero Trip Dashboard]
-    D --> E[Day-by-Day Vertical Timeline]
-    D --> F[Interactive Map & Waypoints]
-    D --> H[Transportation & Stay Cards]
-    D --> I[Live Budget & Category Breakdown]
-    D --> J[Group Split & Settlement Engine]
-    D --> K[Trip Health Risk Detector]
-    D --> L[AI Copilot Assistant]
-    D --> M[✨ Optimize My Trip Modal]
-    G -->|Select Trip| D
-    D <--> N[FastAPI Backend: localhost:8000]
+```
+TRIPNEX
+├── Frontend: React 19 + Vite 8 + Lucide Icons + Pure Modular CSS
+├── Backend:  FastAPI + SQLAlchemy + SQLite (Uvicorn on Port 8000)
+├── AI Engine: Grounded Deterministic Intelligence + Multi-lingual Copilot Engine
+└── Storage:  Local SQLite Database + Browser localStorage Sync
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Launch
 
-### Prerequisites
-- **Python 3.10+**
-- **Node.js 18+** & **npm**
-
----
-
-### 1. Start the FastAPI Backend
-
-```powershell
+### 1. Backend (FastAPI)
+```bash
 cd backend
-# Using the existing virtual environment
-.\venv\Scripts\python.exe -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+.\venv\Scripts\python.exe -m uvicorn main:app --host 127.0.0.1 --port 8000
 ```
-- Backend API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-- Health Endpoint: [http://127.0.0.1:8000/health](http://127.0.0.1:8000/health)
+API runs on: **http://127.0.0.1:8000** (Health Check: `http://127.0.0.1:8000/health`)
 
----
-
-### 2. Start the Frontend App
-
-```powershell
+### 2. Frontend (React + Vite)
+```bash
 cd frontend
-npm install
-npm run dev
+npm run dev -- --host
 ```
-- Open [http://localhost:5173](http://localhost:5173) in your browser.
+Web App runs on: **http://localhost:5173**
 
 ---
 
-## 📂 Project Structure
-
-```
-tripnex_project/
-├── backend/
-│   ├── main.py            # FastAPI entrypoint & CORS
-│   ├── database.py        # SQLite SQLAlchemy engine
-│   ├── models.py          # Trip database model
-│   ├── schemas.py         # Pydantic schemas (TripCreate, TripResponse)
-│   ├── tripnex.db         # SQLite persistent database
-│   └── venv/              # Python virtual environment
-├── frontend/
-│   ├── index.html         # SEO meta tags & Google fonts
-│   ├── package.json       # Dependencies (React, Vite, lucide-react)
-│   └── src/
-│       ├── api/
-│       │   └── trips.js             # FastAPI API client & offline fallback
-│       ├── components/
-│       │   ├── Navbar.jsx           # Brand header, status pill & nav
-│       │   ├── LandingHero.jsx      # Hero with presets & 4-step promise
-│       │   ├── HowItWorksModal.jsx  # Process explainer modal
-│       │   ├── SavedTripsDrawer.jsx # History drawer (GET /trips)
-│       │   ├── TripPlanner.jsx      # Validated generator form
-│       │   ├── GeneratingScreen.jsx # Staged 1.8s animated checklist
-│       │   ├── TripHeader.jsx       # Dashboard hero banner & actions
-│       │   ├── DayTabs.jsx          # Day 1/2/3 tab switcher
-│       │   ├── Timeline.jsx         # Vertical timeline with timestamps
-│       │   ├── TransportCard.jsx    # Multi-leg transit cards
-│       │   ├── HotelCard.jsx        # Stay details, check-in/out & pricing
-│       │   ├── ActivityCard.jsx     # Curated activity recommendations
-│       │   ├── BudgetPanel.jsx      # Live gauges & category breakdown
-│       │   ├── GroupSplit.jsx       # Member balances & debt settlements
-│       │   ├── TripHealth.jsx       # Risk detector & automatic fixers
-│       │   ├── InteractiveMap.jsx   # GPS waypoint simulation
-│       │   ├── Copilot.jsx          # Floating AI Assistant
-│       │   └── OptimizeModal.jsx    # Killer Feature: Adaptive Re-planner
-│       ├── data/
-│       │   ├── demoTrip.js          # Default rich Pondicherry dataset
-│       │   └── tripEnricher.js      # Dynamic enrichment & calculation engine
-│       ├── pages/
-│       │   ├── Home.jsx             # Landing page
-│       │   ├── Planner.jsx          # Trip planner page
-│       │   └── TripDashboard.jsx    # Hero dashboard page
-│       ├── index.css                # TRIPNEX design system & tokens
-│       ├── App.jsx                  # Main application orchestrator
-│       └── main.jsx                 # Vite React entrypoint
-└── README.md
-```
-
----
-
-## 🏆 Hackathon Demo Tips
-
-1. **Preset Showcase**: On the landing page, click any of the 3 instant presets (*Pondicherry*, *Goa*, *Manali*) to immediately demonstrate generation and dashboard rendering to judges.
-2. **Killer Feature ("✨ Optimize Trip")**: On the dashboard, click **"✨ Optimize Trip"** → select **"Budget decreased"** to demonstrate live Before/After comparison and instant savings recalculation.
-3. **Settlement Demonstration**: In the **Group Expense Engine**, click any settlement suggestion (e.g. *"Rahul should receive ₹380 from Ananya"*) to mark it settled in real-time.
-4. **Trip Health Autofix**: In the **Trip Health** section, click **"Fix automatically"** on the checkout conflict to observe the AI automatically resolve hotel luggage hold.
-
----
-
-© 2026 TRIPNEX. Built with ❤️ for Student Group Travel Hackathon.
+© 2026 TRIPNEX. Built for the Group Travel Hackathon.

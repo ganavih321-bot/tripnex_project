@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Sparkles, MessageSquare, X, Send, Bot, User, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Copilot({ trip, onTriggerOptimization }) {
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const [messages, setMessages] = useState([
@@ -14,18 +16,17 @@ export default function Copilot({ trip, onTriggerOptimization }) {
   ]);
 
   const quickPrompts = [
-    { label: "✨ Optimize my budget", action: "optimize_budget" },
-    { label: "⏰ We're running late", action: "running_late" },
-    { label: "🎉 Make this trip more fun", action: "more_fun" },
-    { label: "🚌 Find cheaper transport", action: "cheap_transit" },
-    { label: "🍛 Add more food spots", action: "food_spots" },
+    { label: t('prompt_opt_budget', "✨ Optimize my budget"), action: "optimize_budget" },
+    { label: t('prompt_running_late', "⏰ We're running late"), action: "running_late" },
+    { label: t('prompt_more_fun', "🎉 Make this trip more fun"), action: "more_fun" },
+    { label: t('prompt_cheap_transit', "🚌 Find cheaper transport"), action: "cheap_transit" },
+    { label: t('prompt_food_spots', "🍛 Add more food spots"), action: "food_spots" },
   ];
 
   const handleSend = (textToSend) => {
     const query = textToSend || inputMessage;
     if (!query.trim()) return;
 
-    // Add User message
     const newMsg = {
       id: Date.now(),
       sender: 'user',
@@ -36,21 +37,30 @@ export default function Copilot({ trip, onTriggerOptimization }) {
     setMessages(prev => [...prev, newMsg]);
     setInputMessage('');
 
-    // Generate intelligent contextual response
     setTimeout(() => {
       let botReply = '';
       const lower = query.toLowerCase();
 
-      if (lower.includes('budget') || lower.includes('cost') || lower.includes('cheap')) {
-        botReply = `💡 Based on your current ₹${trip.budget?.toLocaleString('en-IN')} total, switching from private autos to shared scooters on Day 2 will save ₹600 for the group. Tap "✨ Optimize Trip" above to apply this automatically!`;
-      } else if (lower.includes('late') || lower.includes('time') || lower.includes('delay')) {
-        botReply = `⏱️ No worries! I can shift your afternoon Paradise Beach slot to Day 3 morning and extend your French Quarter cafe break by 45 mins. Would you like me to adjust the timeline?`;
-      } else if (lower.includes('fun') || lower.includes('party') || lower.includes('night')) {
-        botReply = `🎉 Added 2 high-rated student hangout spots: Promenade Live Acoustic sessions and Sunset Beach Volleyball at Serenity Beach!`;
-      } else if (lower.includes('food') || lower.includes('eat') || lower.includes('cafe')) {
-        botReply = `🍛 Top student recommendations in ${trip.destination}: Baker Street (Almond Croissants), Surguru (Unlimited Veg Thali ₹180), and Coromandel Cafe!`;
+      if (lower.includes('budget') || lower.includes('cost') || lower.includes('cheap') || lower.includes('बजट') || lower.includes('ಖರ್ಚು') || lower.includes('பட்ஜெட்')) {
+        botReply = language === 'hi'
+          ? `💡 आपके ₹${trip.budget?.toLocaleString('en-IN')} के बजट के आधार पर, डे 2 पर प्राइवेट ऑटो के बजाय शेअर्ड स्कूटर लेने से ₹600 की बचत होगी। इसे तुरंत लागू करने के लिए ऊपर "✨ ट्रिप अनुकूलित करें" पर टैप करें!`
+          : language === 'ta'
+          ? `💡 உங்கள் ₹${trip.budget?.toLocaleString('en-IN')} பட்ஜெட்டில், நாள் 2 இல் பகிரப்பட்ட ஸ்கூட்டர்களைப் பயன்படுத்துவது ₹600 சேமிக்கும். இதை செயல்படுத்த "✨ மேம்படுத்துக" கிளிக் செய்யவும்!`
+          : language === 'kn'
+          ? `💡 ನಿಮ್ಮ ₹${trip.budget?.toLocaleString('en-IN')} ಬಜೆಟ್‌ನಲ್ಲಿ, ದಿನ 2 ರಂದು ಸ್ಕೂಟರ್ ಬಾಡಿಗೆ ಪಡೆಯುವುದರಿಂದ ₹600 ಉಳಿತಾಯವಾಗುತ್ತದೆ. ಅನ್ವಯಿಸಲು "✨ ಉತ್ತಮಗೊಳಿಸಿ" ಟ್ಯಾಪ್ ಮಾಡಿ!`
+          : language === 'te'
+          ? `💡 మీ ₹${trip.budget?.toLocaleString('en-IN')} బడ్జెట్‌లో, డే 2 లో షేర్డ్ స్కూటర్లు ఉపయోగించడం ద్వారా ₹600 ఆదా అవుతుంది. దరఖాస్తు చేసుకోవడానికి "✨ ఆప్టిమైజ్ చేయండి" నొక్కండి!`
+          : language === 'fr'
+          ? `💡 En passant aux scooters partagés le jour 2, vous économiserez 600 ₹ sur votre budget de ${trip.budget?.toLocaleString('en-IN')} ₹. Cliquez sur "✨ Optimiser" pour l'appliquer !`
+          : `💡 Based on your current ₹${trip.budget?.toLocaleString('en-IN')} total, switching from private autos to shared scooters on Day 2 will save ₹600 for the group. Tap "✨ Optimize Trip" above to apply this automatically!`;
+      } else if (lower.includes('late') || lower.includes('time') || lower.includes('delay') || lower.includes('देर') || lower.includes('ತಡ') || lower.includes('தாமதம்')) {
+        botReply = language === 'hi'
+          ? `⏱️ कोई बात नहीं! मैं आपकी पैराडाइज बीच की यात्रा को डे 3 की सुबह शिफ्ट कर सकता हूँ ताकि कैफे का समय 45 मिनट बढ़ सके।`
+          : language === 'fr'
+          ? `⏱️ Aucun souci ! Je peux déplacer l'activité plage au lendemain matin pour éviter tout retard.`
+          : `⏱️ No worries! I can shift your afternoon Paradise Beach slot to Day 3 morning and extend your French Quarter cafe break by 45 mins. Would you like me to adjust the timeline?`;
       } else {
-        botReply = `✨ Got it! I've analyzed your ${trip.people}-traveler itinerary for ${trip.destination}. Your schedule and per-person spending (₹${trip.per_person_budget?.toLocaleString('en-IN')}) are on track.`;
+        botReply = `✨ ${trip.destination} (${trip.people} travelers) — ₹${trip.per_person_budget?.toLocaleString('en-IN')}/${t('dash_per_person', 'person')} is fully on track!`;
       }
 
       setMessages(prev => [
@@ -102,7 +112,7 @@ export default function Copilot({ trip, onTriggerOptimization }) {
         className="card-hover"
       >
         <Sparkles size={20} className="animate-spin-slow" />
-        <span>✨ Trip Copilot</span>
+        <span>{t('copilot_btn', '✨ Trip Copilot')}</span>
       </button>
 
       {/* Slide-out / Floating Chat Window */}
@@ -140,8 +150,8 @@ export default function Copilot({ trip, onTriggerOptimization }) {
                 <Bot size={18} />
               </div>
               <div>
-                <h4 style={{ fontSize: '1rem', color: '#ffffff' }}>TRIPNEX Copilot</h4>
-                <span style={{ fontSize: '0.7rem', color: 'var(--sky-blue)' }}>● AI Group Assistant Active</span>
+                <h4 style={{ fontSize: '1rem', color: '#ffffff' }}>{t('copilot_title', 'TRIPNEX Copilot')}</h4>
+                <span style={{ fontSize: '0.7rem', color: 'var(--sky-blue)' }}>{t('copilot_active', '● AI Group Assistant Active')}</span>
               </div>
             </div>
 
@@ -242,7 +252,7 @@ export default function Copilot({ trip, onTriggerOptimization }) {
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Ask anything about this trip..."
+              placeholder={t('copilot_placeholder', 'Ask anything about this trip...')}
               style={{
                 flex: 1,
                 padding: '0.65rem 0.85rem',

@@ -1,7 +1,9 @@
 import React from 'react';
 import { X, Calendar, Users, Wallet, ChevronRight, Compass, Trash2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function SavedTripsDrawer({ isOpen, onClose, savedTrips, onSelectTrip, onClearTrips, currentTripId }) {
+  const { t } = useLanguage();
   if (!isOpen) return null;
 
   return (
@@ -28,7 +30,7 @@ export default function SavedTripsDrawer({ isOpen, onClose, savedTrips, onSelect
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border-color)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <Compass size={20} color="var(--electric-blue)" />
-            <h2 style={{ fontSize: '1.3rem' }}>My Saved Trips</h2>
+            <h2 style={{ fontSize: '1.3rem' }}>{t('drawer_title', 'My Saved Trips')}</h2>
           </div>
           <button type="button" onClick={onClose} className="btn btn-ghost btn-icon">
             <X size={20} />
@@ -39,8 +41,8 @@ export default function SavedTripsDrawer({ isOpen, onClose, savedTrips, onSelect
         <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingRight: '0.25rem' }}>
           {(!savedTrips || savedTrips.length === 0) ? (
             <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'var(--text-muted)' }}>
-              <p style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>No saved trips yet.</p>
-              <p style={{ fontSize: '0.85rem' }}>Create a new trip or choose a preset to see it listed here.</p>
+              <p style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>{t('drawer_empty', 'No saved trips yet.')}</p>
+              <p style={{ fontSize: '0.85rem' }}>{t('drawer_empty_sub', 'Create a new trip or choose a preset to see it listed here.')}</p>
             </div>
           ) : (
             savedTrips.map((trip) => {
@@ -66,7 +68,7 @@ export default function SavedTripsDrawer({ isOpen, onClose, savedTrips, onSelect
                       {trip.destination}
                     </h3>
                     {isSelected && (
-                      <span className="badge badge-blue">Active</span>
+                      <span className="badge badge-blue">{t('drawer_active', 'Active')}</span>
                     )}
                   </div>
 
@@ -77,16 +79,16 @@ export default function SavedTripsDrawer({ isOpen, onClose, savedTrips, onSelect
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Users size={14} />
-                      <span>{trip.people} Travelers</span>
+                      <span>{trip.people} {t('dash_travelers_count', 'Travelers')}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Wallet size={14} />
-                      <span>Total: ₹{Number(trip.budget).toLocaleString('en-IN')} (₹{perHead.toLocaleString('en-IN')}/head)</span>
+                      <span>{t('dash_total_budget', 'Total')}: ₹{Number(trip.budget).toLocaleString('en-IN')} (₹{perHead.toLocaleString('en-IN')}/{t('dash_per_person', 'person')})</span>
                     </div>
                   </div>
 
                   <div style={{ marginTop: '0.85rem', display: 'flex', justifyContent: 'flex-end', color: 'var(--electric-blue)', fontSize: '0.825rem', fontWeight: 600, alignItems: 'center', gap: '0.2rem' }}>
-                    <span>Open Dashboard</span>
+                    <span>{t('drawer_open_btn', 'Open Dashboard')}</span>
                     <ChevronRight size={14} />
                   </div>
                 </div>
@@ -105,10 +107,10 @@ export default function SavedTripsDrawer({ isOpen, onClose, savedTrips, onSelect
               style={{ color: 'var(--danger)' }}
             >
               <Trash2 size={14} />
-              Clear History
+              {t('drawer_clear', 'Clear History')}
             </button>
             <button type="button" onClick={onClose} className="btn btn-secondary btn-sm">
-              Close
+              {t('drawer_close', 'Close')}
             </button>
           </div>
         )}

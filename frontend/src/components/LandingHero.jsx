@@ -1,42 +1,47 @@
 import React from 'react';
 import { Sparkles, ArrowRight, Compass, ShieldCheck, Users, Wallet, RefreshCw, MapPin, Calendar, Check, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
+import { getDestinationPhoto } from '../data/destinationImages';
 
 export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPreset }) {
+  const { t } = useLanguage();
+
   const presets = [
     {
       destination: "Pondicherry",
       starting_location: "Chennai",
       duration: "3 Days / 2 Nights",
-      dates: "Sept 12 — 14, 2026",
+      subtitle: "French Quarter • Rock Beach • Bohemian Cafes",
       travelers: 5,
       budget: 20000,
       perPerson: "₹4,000",
       tag: "Judge Favorite",
-      emoji: "🏖️",
-      highlights: "Rock Beach • French Quarter • Auroville • Paradise Speedboat"
+      image: getDestinationPhoto("pondicherry", "hero"),
+      highlights: "Rock Beach • French Quarter • Auroville • Paradise Island"
     },
     {
       destination: "Goa",
       starting_location: "Bangalore",
       duration: "3 Days / 2 Nights",
-      dates: "Oct 2 — 4, 2026",
+      subtitle: "Island escapes • Beaches • Adventure",
       travelers: 4,
       budget: 28000,
       perPerson: "₹7,000",
       tag: "Trending",
-      emoji: "🌴",
+      image: getDestinationPhoto("goa", "hero"),
       highlights: "Anjuna Cliffs • Aguada Fort • Water Sports • Latin Quarter"
     },
     {
       destination: "Manali",
       starting_location: "Delhi",
       duration: "4 Days / 3 Nights",
-      dates: "Nov 14 — 17, 2026",
+      subtitle: "Snow Peaks • Pine Trails • Mountain Cafes",
       travelers: 4,
       budget: 32000,
       perPerson: "₹8,000",
       tag: "Mountain Trek",
-      emoji: "🏔️",
+      image: getDestinationPhoto("manali", "hero"),
       highlights: "Solang Valley • Jogini Falls Trek • Old Manali Cafes • Snow Point"
     }
   ];
@@ -74,7 +79,7 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
             border: '1px solid rgba(22, 119, 255, 0.15)'
           }}>
             <Sparkles size={16} />
-            <span>AI-POWERED GROUP TRAVEL COPILOT</span>
+            <span>{t('hero_badge', 'AI-POWERED GROUP TRAVEL COPILOT')}</span>
           </div>
 
           {/* Main Headline */}
@@ -84,13 +89,13 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
             marginBottom: '1.25rem',
             color: 'var(--primary-navy)'
           }}>
-            Your next journey,<br />
+            {t('hero_title_1', 'Your next journey,')}<br />
             <span style={{
               background: 'linear-gradient(135deg, var(--electric-blue) 0%, var(--sky-blue) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
-              planned intelligently.
+              {t('hero_title_2', 'planned intelligently.')}
             </span>
           </h1>
 
@@ -104,7 +109,7 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
             marginLeft: 'auto',
             marginRight: 'auto'
           }}>
-            Plan routes, stays, activities and group spending in one place. Auto-arranges day-wise itineraries with instant per-person cost split and adaptive real-time optimization.
+            {t('hero_subtitle', 'Plan routes, stays, activities and group spending in one place. Auto-arranges day-wise itineraries with instant per-person cost split and adaptive real-time optimization.')}
           </p>
 
           {/* CTAs */}
@@ -116,7 +121,7 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               style={{ fontSize: '1.1rem', padding: '1rem 2.2rem' }}
             >
               <Sparkles size={20} />
-              ✨ Plan My Trip
+              {t('hero_cta_plan', '✨ Plan My Trip')}
             </button>
 
             <button 
@@ -125,7 +130,7 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               className="btn btn-secondary btn-lg"
               style={{ fontSize: '1.05rem', padding: '0.95rem 1.8rem' }}
             >
-              See how it works
+              {t('hero_cta_how', 'See how it works')}
               <ArrowRight size={18} />
             </button>
           </div>
@@ -144,10 +149,10 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               <div style={{ background: 'var(--electric-blue-light)', color: 'var(--electric-blue)', padding: '0.6rem', borderRadius: '10px' }}>
                 <MapPin size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem' }}>1. PLAN</h3>
+              <h3 style={{ fontSize: '1.15rem' }}>{t('promise_plan_title', '1. PLAN')}</h3>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Smart route planning, synchronized transport, verified student stays, and curated day-wise activities.
+              {t('promise_plan_desc', 'Smart route planning, synchronized transport, verified student stays, and curated day-wise activities.')}
             </p>
           </div>
 
@@ -156,10 +161,10 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               <div style={{ background: 'var(--sky-blue-light)', color: '#0284c7', padding: '0.6rem', borderRadius: '10px' }}>
                 <Compass size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem' }}>2. TRAVEL</h3>
+              <h3 style={{ fontSize: '1.15rem' }}>{t('promise_travel_title', '2. TRAVEL')}</h3>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Real-time group timeline, transit departure schedules, check-in alerts, and navigation links.
+              {t('promise_travel_desc', 'Real-time group timeline, transit departure schedules, check-in alerts, and navigation links.')}
             </p>
           </div>
 
@@ -168,10 +173,10 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               <div style={{ background: 'var(--success-bg)', color: 'var(--success)', padding: '0.6rem', borderRadius: '10px' }}>
                 <Wallet size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem' }}>3. SPEND</h3>
+              <h3 style={{ fontSize: '1.15rem' }}>{t('promise_spend_title', '3. SPEND')}</h3>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Automated per-person splits, live remaining budget gauges, and 1-click settlement recommendations.
+              {t('promise_spend_desc', 'Automated per-person splits, live remaining budget gauges, and 1-click settlement recommendations.')}
             </p>
           </div>
 
@@ -180,10 +185,10 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               <div style={{ background: 'var(--purple-bg)', color: 'var(--purple)', padding: '0.6rem', borderRadius: '10px' }}>
                 <RefreshCw size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem' }}>4. ADAPT</h3>
+              <h3 style={{ fontSize: '1.15rem' }}>{t('promise_adapt_title', '4. ADAPT')}</h3>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Live AI optimization when budget changes, trains get delayed, or group size changes midway.
+              {t('promise_adapt_desc', 'Live AI optimization when budget changes, trains get delayed, or group size changes midway.')}
             </p>
           </div>
         </div>
@@ -192,11 +197,15 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
         <div style={{ marginTop: '3rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div>
-              <span className="badge badge-navy" style={{ marginBottom: '0.35rem' }}>Instant Demo Presets</span>
-              <h2 style={{ fontSize: '1.65rem' }}>Explore Popular Student Getaways</h2>
+              <span className="badge badge-navy" style={{ marginBottom: '0.35rem' }}>
+                {t('presets_badge', 'Instant Demo Presets')}
+              </span>
+              <h2 style={{ fontSize: '1.65rem' }}>
+                {t('presets_title', 'Explore Popular Student Getaways')}
+              </h2>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Click any card to inspect a generated itinerary immediately.
+              {t('presets_desc', 'Click any card to inspect a generated itinerary immediately.')}
             </p>
           </div>
 
@@ -209,48 +218,69 @@ export default function LandingHero({ onStartPlan, onOpenHowItWorks, onLoadPrese
               <div 
                 key={idx}
                 className="card card-hover"
-                style={{ padding: '1.65rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', cursor: 'pointer' }}
+                style={{
+                  borderRadius: 'var(--radius-xl)',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  background: '#ffffff',
+                  border: '1px solid var(--border-color)'
+                }}
                 onClick={() => onLoadPreset(p.destination)}
               >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                    <span style={{ fontSize: '2rem' }}>{p.emoji}</span>
-                    <span className="badge badge-blue">{p.tag}</span>
+                {/* Visual Travel Photography Card Top */}
+                <div style={{ position: 'relative', height: '210px', overflow: 'hidden' }}>
+                  <img
+                    src={p.image}
+                    alt={p.destination}
+                    className="travel-img"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div className="cinematic-gradient-overlay" style={{
+                    background: 'linear-gradient(180deg, rgba(7, 26, 61, 0.1) 0%, rgba(7, 26, 61, 0.88) 100%)'
+                  }} />
+                  <div style={{ position: 'absolute', top: '1rem', left: '1rem', right: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span className="badge" style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(8px)', color: 'var(--primary-navy)' }}>
+                      {p.tag}
+                    </span>
+                    <span style={{ background: 'rgba(7, 26, 61, 0.75)', backdropFilter: 'blur(8px)', color: '#38bdf8', padding: '0.2rem 0.65rem', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 700 }}>
+                      {p.duration.split('/')[0]}
+                    </span>
                   </div>
 
-                  <h3 style={{ fontSize: '1.35rem', marginBottom: '0.25rem' }}>
-                    {p.destination}
-                  </h3>
-                  <div style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span>From {p.starting_location}</span>
-                    <span>•</span>
-                    <span>{p.duration}</span>
+                  <div style={{ position: 'absolute', bottom: '1rem', left: '1.25rem', right: '1.25rem', color: '#ffffff' }}>
+                    <h3 style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.15rem' }}>
+                      {p.destination}
+                    </h3>
+                    <p style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>
+                      {p.subtitle}
+                    </p>
                   </div>
-
-                  <div style={{ background: 'var(--bg-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-md)', marginBottom: '1.25rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '0.35rem' }}>
-                      <span style={{ color: 'var(--text-muted)' }}>Total Group Budget:</span>
-                      <span style={{ fontWeight: 700 }}>₹{p.budget.toLocaleString('en-IN')}</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                      <span style={{ color: 'var(--text-muted)' }}>Per Person ({p.travelers} pax):</span>
-                      <span style={{ fontWeight: 700, color: 'var(--electric-blue)' }}>{p.perPerson}</span>
-                    </div>
-                  </div>
-
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
-                    <strong>Highlights:</strong> {p.highlights}
-                  </p>
                 </div>
 
-                <button 
-                  type="button" 
-                  className="btn btn-secondary" 
-                  style={{ width: '100%', justifyContent: 'space-between' }}
-                >
-                  <span>Launch Itinerary</span>
-                  <ChevronRight size={16} />
-                </button>
+                {/* Card Bottom Body */}
+                <div style={{ padding: '1.35rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div style={{ background: 'var(--bg-light)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-md)', marginBottom: '1.25rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '0.35rem' }}>
+                      <span style={{ color: 'var(--text-muted)' }}>{t('preset_total_budget', 'Total Group Budget:')}</span>
+                      <span style={{ fontWeight: 700, color: 'var(--primary-navy)' }}>₹{p.budget.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
+                      <span style={{ color: 'var(--text-muted)' }}>{t('preset_per_person', 'Per Person')} ({p.travelers} pax):</span>
+                      <span style={{ fontWeight: 800, color: 'var(--electric-blue)' }}>{p.perPerson}</span>
+                    </div>
+                  </div>
+
+                  <button 
+                    type="button" 
+                    className="btn btn-secondary" 
+                    style={{ width: '100%', justifyContent: 'space-between' }}
+                  >
+                    <span>Explore Itinerary →</span>
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
               </div>
             ))}
           </div>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Wallet, TrendingUp, Bus, Building2, Utensils, Compass, ShieldAlert, Users } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function BudgetPanel({ budget, spent, remaining, perPersonBudget, categories, peopleCount = 5 }) {
+  const { t } = useLanguage();
   const total = Number(budget) || 20000;
   const totalSpent = Number(spent) || 15700;
   const unspent = Number(remaining) >= 0 ? Number(remaining) : (total - totalSpent);
@@ -18,14 +20,6 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
     }
   };
 
-  const categoryEntries = categories ? Object.entries(categories) : [
-    { key: 'transport', label: 'Transport', spent: 4200, allocated: 5000 },
-    { key: 'stay', label: 'Stay', spent: 7500, allocated: 8000 },
-    { key: 'food', label: 'Food', spent: 2800, allocated: 4500 },
-    { key: 'activities', label: 'Activities', spent: 1200, allocated: 2000 },
-    { key: 'emergency', label: 'Emergency', spent: 0, allocated: 500 },
-  ];
-
   return (
     <div className="card" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
       {/* Header */}
@@ -35,12 +29,12 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
             <Wallet size={18} />
           </div>
           <div>
-            <h3 style={{ fontSize: '1.15rem' }}>Live Budget Engine</h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Real-time expense tracking</p>
+            <h3 style={{ fontSize: '1.15rem' }}>{t('panel_budget_title', 'Live Budget Engine')}</h3>
+            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{t('panel_budget_sub', 'Real-time expense tracking')}</p>
           </div>
         </div>
         <span className="badge badge-green">
-          ₹{Math.round(total / peopleCount).toLocaleString('en-IN')}/person
+          ₹{Math.round(total / peopleCount).toLocaleString('en-IN')}/{t('dash_per_person', 'person')}
         </span>
       </div>
 
@@ -57,7 +51,7 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
       }}>
         <div>
           <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
-            Total Budget
+            {t('dash_total_budget', 'Total Budget')}
           </span>
           <p style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
             ₹{total.toLocaleString('en-IN')}
@@ -66,7 +60,7 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
 
         <div style={{ borderLeft: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)' }}>
           <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
-            Allocated
+            {t('panel_budget_allocated', 'Allocated')}
           </span>
           <p style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--electric-blue)' }}>
             ₹{totalSpent.toLocaleString('en-IN')}
@@ -75,7 +69,7 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
 
         <div>
           <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 700 }}>
-            Remaining
+            {t('panel_budget_remaining', 'Remaining')}
           </span>
           <p style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--success)' }}>
             ₹{unspent.toLocaleString('en-IN')}
@@ -86,7 +80,7 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
       {/* Total Progress Bar */}
       <div style={{ marginBottom: '1.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', marginBottom: '0.35rem' }}>
-          <span style={{ color: 'var(--text-muted)' }}>Budget Utilized</span>
+          <span style={{ color: 'var(--text-muted)' }}>{t('panel_budget_utilized', 'Budget Utilized')}</span>
           <span style={{ fontWeight: 700, color: spentPercentage > 90 ? 'var(--danger)' : 'var(--primary-navy)' }}>
             {spentPercentage}%
           </span>
@@ -104,7 +98,7 @@ export default function BudgetPanel({ budget, spent, remaining, perPersonBudget,
       {/* Category Wise Breakdown */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
-          Category Allocations
+          {t('panel_budget_cat_alloc', 'Category Allocations')}
         </span>
 
         {Object.entries(categories || {}).map(([key, cat]) => {

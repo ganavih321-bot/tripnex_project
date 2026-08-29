@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { Calendar, Users, Wallet, Sparkles, Share2, Edit3, Check, MapPin, Download } from 'lucide-react';
+import { Calendar, Users, Wallet, Sparkles, Share2, Edit3, Check, MapPin, MessageSquare, Mail, UserCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
-export default function TripHeader({ trip, onEditTrip, onOpenOptimize }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleShare = () => {
-    const shareText = `Check out our group trip to ${trip.destination} on TRIPNEX! Total: ₹${trip.budget?.toLocaleString('en-IN')} (₹${trip.per_person_budget?.toLocaleString('en-IN')}/person)`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    }
-  };
+export default function TripHeader({ 
+  trip, 
+  onEditTrip, 
+  onOpenOptimize, 
+  onOpenShare, 
+  onOpenDiscussion, 
+  onOpenMembers, 
+  onOpenSafety, 
+  onScrollToMemories, 
+  suggestionsCount = 0 
+}) {
+  const { t } = useLanguage();
 
   return (
     <div className="card" style={{
@@ -44,7 +46,7 @@ export default function TripHeader({ trip, onEditTrip, onOpenOptimize }) {
               {trip.starting_location || 'Origin'} → {trip.destination}
             </span>
             <span className="badge badge-green" style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#6ee7b7', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-              AI Verified Route
+              {t('dash_verified_route', 'AI Verified Route')}
             </span>
             <span className="badge badge-blue" style={{ background: 'rgba(22, 119, 255, 0.25)', color: '#93c5fd', border: '1px solid rgba(22, 119, 255, 0.3)' }}>
               {trip.travel_style || 'Balanced'} Mode
@@ -52,35 +54,74 @@ export default function TripHeader({ trip, onEditTrip, onOpenOptimize }) {
           </div>
 
           {/* Action CTAs */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexWrap: 'wrap' }}>
+            {/* Safety Mode Button */}
             <button 
               type="button"
-              onClick={onEditTrip}
+              onClick={onOpenSafety}
               className="btn btn-sm"
-              style={{ background: 'rgba(255, 255, 255, 0.12)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.2)' }}
+              style={{ background: 'rgba(239, 68, 68, 0.22)', color: '#fca5a5', border: '1px solid rgba(239, 68, 68, 0.4)' }}
             >
-              <Edit3 size={15} />
-              Edit Trip
+              <span>🛡️ Safety Mode</span>
             </button>
 
+            {/* Travel Memories Quick Link */}
+            <button 
+              type="button"
+              onClick={onScrollToMemories}
+              className="btn btn-sm"
+              style={{ background: 'rgba(56, 189, 248, 0.18)', color: '#bae6fd', border: '1px solid rgba(56, 189, 248, 0.35)' }}
+            >
+              <span>📸 Journal</span>
+            </button>
+
+            {/* View Members Button */}
+            <button 
+              type="button"
+              onClick={onOpenMembers}
+              className="btn btn-sm"
+              style={{ background: 'rgba(255, 255, 255, 0.12)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.25)' }}
+            >
+              <Users size={14} />
+              <span>👥 {trip.travelers?.length || trip.people}</span>
+            </button>
+
+            {/* Discussion / Suggestions Button */}
+            <button 
+              type="button"
+              onClick={onOpenDiscussion}
+              className="btn btn-sm"
+              style={{ background: 'rgba(168, 85, 247, 0.22)', color: '#e9d5ff', border: '1px solid rgba(168, 85, 247, 0.35)' }}
+            >
+              <MessageSquare size={14} />
+              <span>💬 Tips</span>
+              {suggestionsCount > 0 && (
+                <span style={{ background: '#a855f7', color: '#fff', fontSize: '0.68rem', padding: '0.05rem 0.35rem', borderRadius: '99px' }}>
+                  {suggestionsCount}
+                </span>
+              )}
+            </button>
+
+            {/* Optimize Trip */}
             <button 
               type="button"
               onClick={onOpenOptimize}
               className="btn btn-sm btn-primary"
               style={{ background: 'var(--electric-blue)', boxShadow: '0 0 15px rgba(22, 119, 255, 0.5)' }}
             >
-              <Sparkles size={15} />
-              ✨ Optimize Trip
+              <Sparkles size={14} />
+              <span>{t('dash_optimize_trip', '✨ Optimize')}</span>
             </button>
 
+            {/* Share Trip Hub */}
             <button 
               type="button"
-              onClick={handleShare}
+              onClick={onOpenShare}
               className="btn btn-sm"
-              style={{ background: 'rgba(255, 255, 255, 0.12)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.2)' }}
+              style={{ background: 'rgba(255, 255, 255, 0.18)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.3)' }}
             >
-              {copied ? <Check size={15} color="#10B981" /> : <Share2 size={15} />}
-              {copied ? 'Copied Link!' : 'Share'}
+              <Share2 size={14} />
+              <span>{t('dash_share', 'Share')}</span>
             </button>
           </div>
         </div>
@@ -96,10 +137,32 @@ export default function TripHeader({ trip, onEditTrip, onOpenOptimize }) {
                 <Calendar size={16} color="var(--sky-blue)" />
                 <span>{trip.formatted_dates || `${trip.start_date} — ${trip.end_date}`}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+
+              {/* Clickable Members badge */}
+              <button
+                type="button"
+                onClick={onOpenMembers}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  background: 'rgba(56, 189, 248, 0.15)',
+                  border: '1px solid rgba(56, 189, 248, 0.3)',
+                  padding: '0.25rem 0.65rem',
+                  borderRadius: '99px',
+                  color: '#e0f2fe',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: 600,
+                  transition: 'all 0.2s ease'
+                }}
+                className="card-hover"
+                title={t('members_click_to_view', 'Click to view members')}
+              >
                 <Users size={16} color="var(--sky-blue)" />
-                <span>{trip.people} travelers</span>
-              </div>
+                <span>{trip.travelers?.length || trip.people} {t('dash_travelers_count', 'travelers')}</span>
+                <span style={{ fontSize: '0.72rem', color: 'var(--sky-blue)', marginLeft: '0.2rem' }}>• {t('members_click_to_view', 'View Names')}</span>
+              </button>
             </div>
           </div>
 
@@ -116,7 +179,7 @@ export default function TripHeader({ trip, onEditTrip, onOpenOptimize }) {
           }}>
             <div>
               <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#94a3b8', display: 'block' }}>
-                Total Budget
+                {t('dash_total_budget', 'Total Budget')}
               </span>
               <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff' }}>
                 ₹{Number(trip.budget || 0).toLocaleString('en-IN')}
@@ -124,7 +187,7 @@ export default function TripHeader({ trip, onEditTrip, onOpenOptimize }) {
             </div>
             <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.15)', paddingLeft: '1.5rem' }}>
               <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#94a3b8', display: 'block' }}>
-                Per Person
+                {t('dash_per_person', 'Per Person')}
               </span>
               <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--sky-blue)' }}>
                 ₹{Number(trip.per_person_budget || 0).toLocaleString('en-IN')}

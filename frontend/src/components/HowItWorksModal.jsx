@@ -1,7 +1,9 @@
 import React from 'react';
 import { X, Sparkles, MapPin, Compass, Wallet, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function HowItWorksModal({ isOpen, onClose, onStartPlan }) {
+  const { t } = useLanguage();
   if (!isOpen) return null;
 
   const steps = [
@@ -49,13 +51,13 @@ export default function HowItWorksModal({ isOpen, onClose, onStartPlan }) {
               <Sparkles size={22} />
             </div>
             <div>
-              <h2 style={{ fontSize: '1.4rem' }}>How TRIPNEX Works</h2>
+              <h2 style={{ fontSize: '1.4rem' }}>{t('nav_how_it_works', 'How TRIPNEX Works')}</h2>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>The 4-stage intelligent student travel loop</p>
             </div>
           </div>
           <button 
             type="button" 
-            onClick={onClose}
+            onClick={onClose} 
             className="btn btn-ghost btn-icon"
             style={{ color: 'var(--text-muted)' }}
           >
@@ -101,7 +103,7 @@ export default function HowItWorksModal({ isOpen, onClose, onStartPlan }) {
         {/* Footer CTA */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem' }}>
           <button type="button" onClick={onClose} className="btn btn-secondary">
-            Close
+            {t('opt_btn_cancel', 'Close')}
           </button>
           <button 
             type="button" 
@@ -112,7 +114,7 @@ export default function HowItWorksModal({ isOpen, onClose, onStartPlan }) {
             className="btn btn-primary"
           >
             <Sparkles size={16} />
-            Try Planner Now
+            {t('hero_cta_primary', 'Try Planner Now')}
           </button>
         </div>
       </div>
