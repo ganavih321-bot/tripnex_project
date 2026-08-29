@@ -19,6 +19,7 @@ import GroupDiscussion from '../components/GroupDiscussion';
 import GroupMembersModal from '../components/GroupMembersModal';
 import SafetyMode from '../components/SafetyMode';
 import TripMemory from '../components/TripMemory';
+import LiveTripProgress from '../components/LiveTripProgress';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function TripDashboard({ trip, onEditTrip, onUpdateTrip }) {
@@ -292,6 +293,14 @@ export default function TripDashboard({ trip, onEditTrip, onUpdateTrip }) {
                 {trip.days?.length || 3} {t('dash_days_total', 'Days Total')}
               </span>
             </div>
+
+            {/* Live In-Trip HUD & Completion Stepper */}
+            <LiveTripProgress
+              trip={trip}
+              activeDay={activeDay}
+              visitedStops={visitedStops}
+              onToggleVisited={handleToggleVisited}
+            />
 
             {/* Day Selector Tabs */}
             <DayTabs

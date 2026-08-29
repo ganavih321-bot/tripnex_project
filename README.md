@@ -2,58 +2,48 @@
 
 > **PLAN → TRAVEL → SPEND → ADAPT**
 >
-> Built for the Group Travel Hackathon. Upgraded into an intelligent, highly visual AI travel command center inspired by **Airbnb + Notion + Google Maps + Modern AI Dashboard**.
+> Built for the Group Travel Hackathon. Elevated into an intelligent, highly visual AI travel command center combining **Airbnb + Notion + Google Maps + Modern AI Dashboard**.
 
 ---
 
-## 🌟 Key Upgrades & Highlights
+## 🌟 Key Features & Add-Ons
 
-### 1. 🎨 Premium Visual Design System
-- **Palette**: Warm cream / luxury off-white (`#FAF9F6`) with deep luxury navy text (`#071A3D`, `#0B192C`).
-- **Glassmorphic Cards**: Soft frosted cards (`rgba(255, 255, 255, 0.88)` + backdrop blur + subtle borders).
-- **Large Rounded Cards**: Modern `20px` to `28px` corner radiuses with refined elevation shadows.
-- **Typography & Micro-interactions**: Smooth card hover lifts, subtle photo zoom, animated progress bars, and zero clutter.
+### 1. 🎛️ TRIPNEX Command Dashboard (`Dashboard.jsx`)
+- **Hero Greeting**: *"GOOD MORNING 👋 — Where are we going next?"* with live destination search.
+- **Your Next Adventure**: Cinematic spotlight card with dates, duration, friends count, estimated budget, and 1-click launch.
+- **Your Trips Portfolio**: Visual photo cards for Bali, Tokyo, Paris, Switzerland, Iceland, Dubai, Pondicherry, Goa, and Manali.
+- **Tripnex Intelligence & Live Budget**: Real-time spending progress gauge and verified AI insights.
+- **Quick Actions**: `+ Plan a Trip`, `Explore Places`, `📸 Memories`, `🚨 Safety Mode`.
 
-### 2. 📸 Curated Destination Photography
-- High-resolution, destination-specific photography library for **Pondicherry**, **Goa**, **Manali**, **Wayanad**, **Bali**, **Jaipur**, and custom getaways.
-- Large cinematic photography covers on destination cards and headers with `object-fit: cover` and legible gradient overlays.
+### 2. 🎨 6 Atmospheric Themes System (`ThemeContext.jsx` & `ThemeSwitcher.jsx`)
+- **☀️ Light**: Warm luxury cream (`#FAF9F6`) + Deep Navy (`#071A3D`).
+- **🌙 Dark**: Cinematic deep charcoal (`#090E17`, `#131C2E`) with soft neon glow.
+- **🌅 Sunset**: Warm peach, terracotta, and golden hour tones.
+- **🌊 Ocean**: Cool island azure, deep teal, and seafoam accents.
+- **🌿 Nature**: Serene emerald, pine green, and earth tones.
+- **⚙️ Auto**: Dynamically follows your operating system appearance preference (`prefers-color-scheme`).
+- *Persisted across page refreshes via `localStorage` with smooth animated atmospheric transitions.*
 
-### 3. 📊 Dynamic Budget Heatmap
-- Live status indicator:
-  - 🟢 **SAFE** (≤ 80% utilized)
-  - 🟡 **GETTING EXPENSIVE** (81% – 95% utilized)
-  - 🔴 **OVER BUDGET** (> 95% utilized)
-- Animated spending progress gauge (`₹15,700 / ₹20,000 — 78% UTILIZED`).
-- Visual category breakdown bars for **Accommodation**, **Transport**, **Food & Dining**, **Activities & Fun**, and **Safety Buffer**.
+### 3. 📜 Immersive 10-Section Long-Form Travel Story (`Home.jsx`)
+1. **Hero**: *"YOUR JOURNEY STARTS HERE. Plan smarter. Travel better. Remember everything."*
+2. **Explore The World**: Horizontal destination carousel with drag/swipe and photo zoom on hover.
+3. **AI Trip Architect**: Visual interactive transformation (*"Your Idea ➔ TRIPNEX AI ➔ Your Perfect Plan"*).
+4. **Smart Itinerary**: Day-wise timeline preview with progressive reveal.
+5. **TRIPNEX Intelligence**: 4 AI insight cards (Budget, Weather, Route, Pacing).
+6. **Budget Heatmap**: Live budget status (🟢 SAFE / 🟡 EXPENSIVE / 🔴 OVER) & category breakdown bars.
+7. **Interactive Map**: Route waypoints & GPS synchronization preview.
+8. **Safety Mode**: Emergency command center with SOS beacon & hospital routing.
+9. **Trip Memory**: Travel journal & photo timeline.
+10. **Final Cinematic CTA**: *"WHERE WILL YOU GO NEXT? [ PLAN MY NEXT TRIP ✈️ ]"*
 
-### 4. 🧠 TRIPNEX Intelligence AI Panel
-- **💡 Budget Insight**: Stay vs transit cost analysis & actionable group savings.
-- **🌦️ Weather & Climate Insight**: Destination temperatures, optimal outdoor windows, and weather-aware scheduling.
-- **🚗 Route Efficiency Insight**: Walking clusters and transit grouping to eliminate unnecessary travel overhead.
-- **⏱️ Schedule Pacing**: Balanced pacing with rest buffer windows.
+### 4. 🧭 Scroll-Adaptive Sticky Navbar (`Navbar.jsx`)
+- Shrinks slightly on scroll with dynamic backdrop blur and elevated shadow.
+- Instant navigation: `Explore`, `Dashboard`, `My Trips`, `Memories`, `Theme Switcher`, `Language Selector`, and `+ Plan Trip`.
+- Responsive mobile drawer menu.
 
-### 5. 🛡️ Emergency & Safety Mode
-- Dedicated **Safety Mode** interface accessible from top header and navigation:
-  - 🚨 **"I'M IN TROUBLE" SOS Button** with 2-step confirmation modal to prevent accidental triggers.
-  - National Emergency Hotlines (Police 112/100, Ambulance 108, Tourist Helpline 1363, Women Safety 1091).
-  - Nearest Verified 24/7 Hospital (with distance, address, phone hotline, and Google Maps GPS navigation).
-  - Local Police Station contacts & direct routing.
-  - One-click **Share Live GPS Location** and **Share Trip with Parents / Emergency Contacts**.
-
-### 6. 📸 Trip Memory & Travel Journal
-- Cinematic Trip Memory header:
-  - *"PONDICHERRY '26 • 3 DAYS • 5 FRIENDS • 12 PLACES VISITED • ₹15,700 SPENT — 'Some journeys deserve to be remembered.'"*
-- **Photo Timeline by Day** (Day 1, Day 2, Day 3) in a clean masonry/grid layout.
-- **Upload Memory Photo**: Add photos, custom captions, photographer credits, and day associations.
-- **Fullscreen Lightbox Viewer**: Next/Prev gallery browsing with full captions.
-- Persisted locally in `localStorage`.
-
-### 7. 👥 Interactive Group Members & Roster
-- Clickable member count (`5 travelers`) displaying all friends present (*You, Rahul, Ananya, Priya, Arjun*), roles, and attendance status (*● Present in Trip*).
-- Inline name editing, friend additions, and dynamic equal-split recalculation.
-
-### 8. 🌐 Full Multi-Language Localization
-- Dynamic language switcher supporting **English, Hindi (हिंदी), Tamil (தமிழ்), Kannada (ಕನ್ನಡ), Telugu (తెలుగు), and French (Français)**.
+### 5. ⏱️ Live In-Trip Progress HUD (`LiveTripProgress.jsx`)
+- In-trip completion tracker: *"BALI — DAY 2 • 68% COMPLETE • 9 / 17 places visited"*.
+- Active stop indicator (`✓ Breakfast → ✓ Waterfall → ➔ Beach (CURRENT) → ○ Sunset`).
 
 ---
 
@@ -62,8 +52,9 @@
 ```
 TRIPNEX
 ├── Frontend: React 19 + Vite 8 + Lucide Icons + Pure Modular CSS
+├── Themes:   Light | Dark | Sunset | Ocean | Nature | Auto (CSS Variables)
 ├── Backend:  FastAPI + SQLAlchemy + SQLite (Uvicorn on Port 8000)
-├── AI Engine: Grounded Deterministic Intelligence + Multi-lingual Copilot Engine
+├── AI Engine: Deterministic Intelligence + Multi-lingual Copilot Engine
 └── Storage:  Local SQLite Database + Browser localStorage Sync
 ```
 
@@ -76,7 +67,7 @@ TRIPNEX
 cd backend
 .\venv\Scripts\python.exe -m uvicorn main:app --host 127.0.0.1 --port 8000
 ```
-API runs on: **http://127.0.0.1:8000** (Health Check: `http://127.0.0.1:8000/health`)
+API runs on: **http://127.0.0.1:8000** *(Health: `http://127.0.0.1:8000/health`)*
 
 ### 2. Frontend (React + Vite)
 ```bash
@@ -87,4 +78,4 @@ Web App runs on: **http://localhost:5173**
 
 ---
 
-© 2026 TRIPNEX. Built for the Group Travel Hackathon.
+© 2026 TRIPNEX. Built with ❤️ for Student Group Travel Hackathon.

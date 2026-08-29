@@ -6,11 +6,11 @@ export default function GeneratingScreen({ destination, onComplete }) {
   const { t } = useLanguage();
 
   const steps = [
-    t('gen_step_1', "Understanding your group & travel style"),
-    t('gen_step_2', "Optimizing budget allocation & buffers"),
-    t('gen_step_3', "Planning transit routes & local hops"),
-    t('gen_step_4', "Finding top-rated verified activities & stays"),
-    t('gen_step_5', "Building your day-wise group itinerary")
+    "ANALYZING DESTINATION",
+    "OPTIMIZING TRANSIT ROUTE",
+    "CHECKING BUDGET ALLOCATION",
+    "BUILDING DAY-WISE ITINERARY",
+    "PREPARING YOUR PERFECT TRIP"
   ];
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -26,11 +26,11 @@ export default function GeneratingScreen({ destination, onComplete }) {
           setIsReady(true);
           setTimeout(() => {
             if (onComplete) onComplete();
-          }, 600);
+          }, 700);
           return prev;
         }
       });
-    }, 380);
+    }, 420);
 
     return () => clearInterval(interval);
   }, []);
@@ -72,13 +72,13 @@ export default function GeneratingScreen({ destination, onComplete }) {
         </div>
 
         {/* Heading */}
-        <h2 style={{ fontSize: '1.75rem', marginBottom: '0.4rem' }}>
-          {isReady ? t('gen_title_ready', "Your trip is ready ✨") : t('gen_title_working', "Planning your journey...")}
+        <h2 style={{ fontSize: '1.75rem', marginBottom: '0.4rem', color: 'var(--primary-navy)', fontWeight: 800 }}>
+          {isReady ? "YOUR ADVENTURE IS READY ✨" : "TRIPNEX AI ARCHITECT"}
         </h2>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '2rem' }}>
           {isReady 
-            ? `${destination || 'your destination'}` 
-            : t('gen_sub_working', "TRIPNEX engine is crafting the optimal student itinerary")}
+            ? `Synthesized complete blueprint for ${destination || 'your destination'}` 
+            : `Synthesizing synchronized itinerary and budget splits for ${destination || 'your trip'}`}
         </p>
 
         {/* Steps Checklist */}

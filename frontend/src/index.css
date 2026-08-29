@@ -1,5 +1,5 @@
 :root {
-  /* Warm off-white / luxury cream palette */
+  /* Warm off-white / luxury cream palette (Light default) */
   --bg-warm: #FAF9F6;
   --bg-light: #F8F9FA;
   --card-bg: #FFFFFF;
@@ -55,10 +55,113 @@
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==================================================
+   THEME 2: DARK (Cinematic Deep Charcoal & Glow)
+   ================================================== */
+[data-theme="dark"] {
+  --bg-warm: #090e17;
+  --bg-light: #0f172a;
+  --card-bg: #131c2e;
+  --card-glass: rgba(19, 28, 46, 0.85);
+  
+  --primary-navy: #f8fafc;
+  --primary-navy-dark: #ffffff;
+  --primary-navy-light: #e2e8f0;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-light: #64748b;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+
+  --electric-blue: #38bdf8;
+  --electric-blue-hover: #60a5fa;
+  --electric-blue-light: rgba(56, 189, 248, 0.15);
+  
+  --shadow-sm: 0 2px 8px 0 rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
+}
+
+/* ==================================================
+   THEME 3: SUNSET (Warm Peach / Golden / Terracotta)
+   ================================================== */
+[data-theme="sunset"] {
+  --bg-warm: #FFF8F3;
+  --bg-light: #FFF2E8;
+  --card-bg: #FFFFFF;
+  --card-glass: rgba(255, 255, 255, 0.9);
+  
+  --primary-navy: #3D1E07;
+  --primary-navy-dark: #2E1504;
+  --primary-navy-light: #522B0C;
+  --text-main: #3B1D0B;
+  --text-muted: #7C5E48;
+  --text-light: #A88B77;
+  --border-color: rgba(234, 88, 12, 0.12);
+  --border-subtle: rgba(234, 88, 12, 0.06);
+
+  --electric-blue: #EA580C;
+  --electric-blue-hover: #C2410C;
+  --electric-blue-light: #FFEDD5;
+  --sky-blue: #F59E0B;
+  --sky-blue-light: #FEF3C7;
+}
+
+/* ==================================================
+   THEME 4: OCEAN (Cool Azure / Deep Teal / Island Waters)
+   ================================================== */
+[data-theme="ocean"] {
+  --bg-warm: #F0FDFB;
+  --bg-light: #E6FFFA;
+  --card-bg: #FFFFFF;
+  --card-glass: rgba(255, 255, 255, 0.9);
+  
+  --primary-navy: #042F2E;
+  --primary-navy-dark: #021C1C;
+  --primary-navy-light: #115E59;
+  --text-main: #063937;
+  --text-muted: #4B6F6E;
+  --text-light: #7E9E9D;
+  --border-color: rgba(13, 148, 136, 0.12);
+  --border-subtle: rgba(13, 148, 136, 0.06);
+
+  --electric-blue: #0D9488;
+  --electric-blue-hover: #0F766E;
+  --electric-blue-light: #CCFBF1;
+  --sky-blue: #0EA5E9;
+  --sky-blue-light: #E0F2FE;
+}
+
+/* ==================================================
+   THEME 5: NATURE (Serene Emerald / Pine / Earth)
+   ================================================== */
+[data-theme="nature"] {
+  --bg-warm: #F4FAF7;
+  --bg-light: #EAF4EE;
+  --card-bg: #FFFFFF;
+  --card-glass: rgba(255, 255, 255, 0.9);
+  
+  --primary-navy: #062E1A;
+  --primary-navy-dark: #031C10;
+  --primary-navy-light: #0E4E2C;
+  --text-main: #08331E;
+  --text-muted: #4E6E5C;
+  --text-light: #7D9B8B;
+  --border-color: rgba(16, 185, 129, 0.12);
+  --border-subtle: rgba(16, 185, 129, 0.06);
+
+  --electric-blue: #059669;
+  --electric-blue-hover: #047857;
+  --electric-blue-light: #D1FAE5;
+  --sky-blue: #10B981;
+  --sky-blue-light: #ECFDF5;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease;
 }
 
 body {
